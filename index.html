@@ -337,21 +337,23 @@ footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line);
           <img src="assets/stubby.jpg" alt="Stubby landing page: Find study partners that actually fit, with a 94% match card" width="800" height="515" loading="lazy">
         </div>
         <div class="proj-body">
-          <div class="proj-meta"><span class="label">Team of 4</span><span class="label">May 2026 – now</span></div>
+          <div class="proj-meta"><span class="label">Team of 4</span><span class="label">May 2026 – now</span><span class="label">My part: chat</span></div>
           <h3>Stubby</h3>
-          <p>Matches students with study partners who take the same modules and like to study the same way, then gives them chat and shared study sessions. I worked on both the front end and the back end.</p>
+          <p>Matches students with study partners who take the same modules and like to study the same way. <b>I built the whole chat feature</b>, from the database and WebSocket server to the chat screen.</p>
           <p>It's our CI/CD module project, so every change goes through <b>a pull request, automated tests and a GitHub Actions pipeline</b> before it reaches the live site.</p>
           <details class="more" data-t="stubby details">
             <summary>More details</summary>
             <ul>
-              <li><b>Real-time chat</b> with Socket.IO: typing indicators, read receipts, online status, polls, group chats and a shared whiteboard.</li>
-              <li><b>Matching</b> on modules and study preferences, friend requests by QR code, community posts, and study sessions with small goals.</li>
-              <li><b>Testing:</b> around 90 Jest test files (with Supertest) and 41 Playwright end-to-end specs.</li>
+              <li><b>My part, the chat:</b> one-to-one and group chats with typing indicators, read receipts, online status, replies, reactions, pins, @mentions, search, drafts, polls, file and voice messages, and a shared whiteboard.</li>
+              <li><b>Voice and video calls</b> peer to peer with WebRTC, using the chat's WebSocket connection to set up each call.</li>
+              <li><b>Under the hood:</b> a WebSocket server that checks each user's JWT before connecting, 39 REST endpoints and 11 PostgreSQL tables.</li>
+              <li><b>Testing:</b> the chat alone has around 300 Jest tests and 39 Playwright end-to-end tests. The whole project has about 90 Jest test files and 41 Playwright spec files.</li>
+              <li><b>The rest of the app</b> (team): matching on modules and study preferences, friend requests by QR code, community posts and study sessions.</li>
               <li><b>CI/CD:</b> GitHub Actions runs ESLint, Prettier and every test suite, then publishes QA reports to GitHub Pages. The app runs on Render with PostgreSQL.</li>
               <li>A small <b>Python moderation service</b> runs beside the Node.js app.</li>
             </ul>
           </details>
-          <p class="built"><b>Built with</b> Node.js, Express, PostgreSQL, Socket.IO, Jest, Playwright, GitHub Actions</p>
+          <p class="built"><b>Built with</b> Node.js, Express, PostgreSQL, WebSockets, WebRTC, Jest, Playwright, GitHub Actions</p>
           <div class="proj-links"><a class="btn flag" href="https://stubby-bp2p.onrender.com/" target="_blank" rel="noopener" data-t="stubby live">Open Stubby</a></div>
         </div>
       </article>
