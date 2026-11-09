@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Site Stats</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310231a'/%3E%3Cpath d='M8 23V15M14 23V9M20 23V13M26 23V18' stroke='%23f0c419' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #f3f1ea; --panel: #fbfaf6; --ink: #10231a; --ink-2: #4c5c52; --muted: #7a877f; --line: #dcd9cd;
+  --bar: #2a7350; --bar-soft: #cfe3d6; --flag: #f0c419; --err: #b3261e;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #b0c0b5; --muted: #84968a; --line: #27402f; --bar: #5bb886; --bar-soft: #1f3a2b; --err: #ff8a80; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #b0c0b5; --muted: #84968a; --line: #27402f; --bar: #5bb886; --bar-soft: #1f3a2b; --err: #ff8a80; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+h1 { font-size: 22px; margin: 0; }
+h2 { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 14px; }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+.controls { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+button, input { font: inherit; }
+.seg button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 6px 12px; cursor: pointer; }
+.seg button:first-child { border-radius: 4px 0 0 4px; } .seg button:last-child { border-radius: 0 4px 4px 0; }
+.seg button + button { border-left: 0; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.ghost { border: 1px solid var(--line); background: none; color: var(--ink-2); padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px; min-width: 0; }
+.grid { display: grid; gap: 16px; }
+.kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kpi b { display: block; font-size: 34px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--ink-2); font-size: 13.5px; }
+.two { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.note { color: var(--muted); font-size: 13px; margin-top: 10px; }
+/* horizontal bars */
+.hbars { display: grid; gap: 9px; }
+.hrow { display: grid; grid-template-columns: 130px minmax(0, 1fr) 92px; gap: 10px; align-items: center; font-size: 14px; }
+.hrow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hrow .track { height: 14px; position: relative; }
+.hrow .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bar); border-radius: 0 4px 4px 0; min-width: 2px; }
+.hrow .val { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 13px; }
+.hrow:hover .fill { filter: brightness(1.15); }
+/* daily columns */
+.cols { display: flex; align-items: flex-end; gap: 2px; height: 150px; border-bottom: 1px solid var(--line); }
+.cols div { flex: 1; background: var(--bar); border-radius: 4px 4px 0 0; min-height: 2px; position: relative; }
+.cols div:hover { filter: brightness(1.15); }
+.cols-axis { display: flex; justify-content: space-between; font: 12px var(--mono); color: var(--muted); margin-top: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th { text-align: left; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); padding: 8px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+.empty { color: var(--muted); font-size: 14px; }
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12.5px; padding: 5px 8px; border-radius: 4px; display: none; z-index: 9; white-space: nowrap; }
+/* login */
+.login { max-width: 380px; margin: 12vh auto 0; }
+.login form { display: grid; gap: 10px; margin-top: 14px; }
+.login input { padding: 10px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink); }
+.login button { padding: 10px; border: 0; border-radius: 4px; background: var(--ink); color: var(--bg); font-weight: 600; cursor: pointer; }
+.err { color: var(--err); font-size: 14px; min-height: 1.4em; }
+@media (max-width: 800px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two, .three { grid-template-columns: minmax(0, 1fr); } .hrow { grid-template-columns: 96px minmax(0, 1fr) 84px; } }
+</style>
+</head>
+<body>
+<div id="tip" role="tooltip"></div>
+
+<div class="wrap login card" id="login" hidden>
+  <h1>Site stats</h1>
+  <p class="note">Enter the admin key for aarontan.dev.</p>
+  <form id="loginForm">
+    <input type="password" id="key" autocomplete="current-password" placeholder="Admin key" required>
+    <button type="submit">Open dashboard</button>
+    <div class="err" id="loginErr"></div>
+  </form>
+</div>
+
+<div class="wrap" id="dash" hidden>
+  <div class="head">
+    <h1>aarontan.dev · visitors</h1>
+    <div class="controls">
+      <div class="seg" id="range">
+        <button data-d="1">24 h</button><button data-d="7">7 days</button><button data-d="30" aria-pressed="true">30 days</button><button data-d="90">90 days</button>
+      </div>
+      <button class="ghost" id="refresh">Refresh</button>
+      <button class="ghost" id="logout">Log out</button>
+    </div>
+  </div>
+
+  <div class="grid kpis">
+    <div class="card kpi"><b id="kVisitors">–</b><span>visitors</span></div>
+    <div class="card kpi"><b id="kViews">–</b><span>page views</span></div>
+    <div class="card kpi"><b id="kTime">–</b><span>average time reading</span></div>
+    <div class="card kpi"><b id="kDepth">–</b><span>average scroll depth</span></div>
+  </div>
+
+  <div class="grid two" style="margin-top:16px">
+    <div class="card">
+      <h2>Where people spend their time</h2>
+      <div class="hbars" id="sections"></div>
+      <p class="note">Bar = average seconds a section was on screen, per visitor who reached it. Right column = share of visitors who reached it.</p>
+    </div>
+    <div class="card">
+      <h2>What people clicked</h2>
+      <div class="hbars" id="clicks"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>Visitors per day (Singapore time)</h2>
+    <div class="cols" id="daily"></div>
+    <div class="cols-axis"><span id="dFirst"></span><span id="dLast"></span></div>
+  </div>
+
+  <div class="grid three" style="margin-top:16px">
+    <div class="card"><h2>Came from</h2><div class="hbars" id="refs"></div></div>
+    <div class="card"><h2>Country</h2><div class="hbars" id="countries"></div></div>
+    <div class="card"><h2>Device</h2><div class="hbars" id="devices"></div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>Latest visits</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>When (SGT)</th><th>From</th><th>Country</th><th>Device</th><th>Time</th><th>Scrolled</th><th>Clicked or opened</th></tr></thead>
+      <tbody id="recent"></tbody>
+    </table></div>
+  </div>
+  <p class="note">Your own visits aren't counted once you've opened aarontan.dev/?notrack in that browser. Local previews are never counted.</p>
+</div>
+
+<script>
+const SECTION_ORDER = ['top', 'work', 'experience', 'hackathons', 'toolkit', 'education', 'beyond', 'contact'];
+const SECTION_NAME = { top: 'Intro', work: 'Projects', experience: 'Experience', hackathons: 'Hackathons', toolkit: 'Toolkit', education: 'Education', beyond: 'Off the keyboard', contact: 'Contact' };
+const $ = id => document.getElementById(id);
+let days = 30, key = '';
+try { key = sessionStorage.getItem('adminKey') || ''; } catch (e) {}
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const secs = s => { s = Math.round(Number(s) || 0); return s < 60 ? s + 's' : Math.floor(s / 60) + 'm ' + String(s % 60).padStart(2, '0') + 's'; };
+
+// shared hover tooltip
+const tip = $('tip');
+document.addEventListener('mousemove', e => {
+  const el = e.target.closest('[data-tip]');
+  if (!el) { tip.style.display = 'none'; return; }
+  tip.textContent = el.dataset.tip; tip.style.display = 'block';
+  const x = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+});
+
+function hbars(el, rows, opts = {}) {
+  if (!rows.length) { el.innerHTML = '<p class="empty">Nothing yet.</p>'; return; }
+  const max = Math.max(...rows.map(r => r.v), 1);
+  el.innerHTML = rows.map(r => `
+    <div class="hrow" data-tip="${esc(r.tip || (r.label + ': ' + r.v))}">
+      <span class="nm">${esc(r.label)}</span>
+      <span class="track"><span class="fill" style="width:${(100 * r.v / max).toFixed(1)}%"></span></span>
+      <span class="val">${esc(r.right ?? r.v)}</span>
+    </div>`).join('');
+}
+
+function render(d) {
+  const t = d.totals;
+  $('kVisitors').textContent = t.visitors;
+  $('kViews').textContent = t.views;
+  $('kTime').textContent = secs(t.avgSecs);
+  $('kDepth').textContent = t.avgDepth + '%';
+
+  const byName = Object.fromEntries(d.sections.map(s => [s.name, s]));
+  hbars($('sections'), SECTION_ORDER.filter(n => byName[n]).map(n => {
+    const s = byName[n], avg = Number(s.secs) / Number(s.visitors), reach = t.visitors ? Math.round(100 * s.visitors / t.visitors) : 0;
+    return { label: SECTION_NAME[n] || n, v: avg, right: `${secs(avg)} · ${reach}%`, tip: `${SECTION_NAME[n] || n}: ${secs(avg)} average, reached by ${s.visitors} of ${t.visitors} visitors` };
+  }));
+
+  hbars($('clicks'), d.clicks.map(c => ({ label: c.name + (c.type === 'expand' ? ' (opened)' : ''), v: Number(c.n),
+    tip: `${c.name}: ${c.n} ${c.type === 'expand' ? 'opens' : 'clicks'} by ${c.visitors} visitors` })));
+
+  // fill missing days so gaps show as empty
+  const map = Object.fromEntries(d.daily.map(r => [r.day, Number(r.visitors)])), cols = [];
+  const now = new Date(Date.now() + 8 * 3600e3);
+  for (let i = d.days - 1; i >= 0; i--) { const k = new Date(now - i * 864e5).toISOString().slice(0, 10); cols.push([k, map[k] || 0]); }
+  const max = Math.max(...cols.map(c => c[1]), 1);
+  $('daily').innerHTML = cols.map(([k, v]) => `<div style="height:${(100 * v / max).toFixed(1)}%" data-tip="${k}: ${v} visitor${v === 1 ? '' : 's'}"></div>`).join('');
+  $('dFirst').textContent = cols[0][0]; $('dLast').textContent = cols[cols.length - 1][0];
+
+  const simple = (el, rows) => hbars(el, rows.map(r => ({ label: r.name, v: Number(r.n), tip: `${r.name}: ${r.n} visitors` })));
+  simple($('refs'), d.refs); simple($('countries'), d.countries); simple($('devices'), d.devices);
+
+  $('recent').innerHTML = d.recent.length ? d.recent.map(r => `<tr>
+      <td>${esc(r.at)}</td><td>${esc(r.ref || '–')}</td><td>${esc(r.country || '–')}</td><td>${esc(r.device || '–')}</td>
+      <td class="n">${secs(r.secs)}</td><td class="n">${Number(r.depth)}%</td><td>${esc(r.clicks || '–')}</td></tr>`).join('')
+    : '<tr><td colspan="7" class="empty">No visits in this range yet.</td></tr>';
+}
+
+async function load() {
+  const r = await fetch('/api/stats?days=' + days, { headers: { Authorization: 'Bearer ' + key } });
+  if (r.status === 401) { showLogin('That key is wrong.'); return; }
+  if (!r.ok) { alert('Could not load stats (' + r.status + ').'); return; }
+  $('login').hidden = true; $('dash').hidden = false;
+  render(await r.json());
+}
+function showLogin(msg) {
+  try { sessionStorage.removeItem('adminKey'); } catch (e) {}
+  key = ''; $('dash').hidden = true; $('login').hidden = false; $('loginErr').textContent = msg || ''; $('key').focus();
+}
+
+$('loginForm').addEventListener('submit', e => {
+  e.preventDefault(); key = $('key').value.trim();
+  try { sessionStorage.setItem('adminKey', key); } catch (e) {}
+  load();
+});
+$('range').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  days = Number(b.dataset.d);
+  $('range').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  load();
+});
+$('refresh').addEventListener('click', load);
+$('logout').addEventListener('click', () => showLogin());
+key ? load() : showLogin();
+</script>
+</body>
+</html>

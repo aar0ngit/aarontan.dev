@@ -4,225 +4,176 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aaron Tan</title>
-<meta name="description" content="Aaron Tan: Year 2 Diploma in IT student at Singapore Polytechnic, specialising in Cybersecurity and Cloud Computing. Full-stack web developer looking for a software development internship.">
+<meta name="description" content="Aaron Tan: Year 2 Diploma in IT student at Singapore Polytechnic, specialising in Cybersecurity and Cloud Computing. Looking for a software development internship.">
 <link rel="canonical" href="https://aarontan.dev/">
-<meta property="og:title" content="Aaron Tan: IT student and full-stack developer">
-<meta property="og:description" content="Year 2 Diploma in IT at Singapore Polytechnic. Live projects: Planet Hopper and Stubby.">
+<meta property="og:title" content="Aaron Tan: IT student, Singapore Polytechnic">
+<meta property="og:description" content="Year 2 Diploma in IT. Two live projects: Planet Hopper and Stubby.">
 <meta property="og:url" content="https://aarontan.dev/">
 <meta property="og:image" content="https://aarontan.dev/assets/planet-hopper.jpg">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#1f5b3d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f5b3d'/%3E%3Ctext x='16' y='23' font-family='Arial Black,Arial' font-weight='900' font-size='19' text-anchor='middle' fill='%23f0c419'%3EA%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Aaron Tan","url":"https://aarontan.dev/","email":"mailto:natnoraa27@gmail.com","alumniOf":{"@type":"CollegeOrUniversity","name":"Singapore Polytechnic"},"sameAs":["https://www.linkedin.com/in/aarontann/","https://github.com/aar0ngit"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: the hero is a live CI pipeline that "builds" Aaron's profile; below it, projects as large split cards, experience as a dense table, all on a deep-green ground with a yellow "running" accent. */
 :root {
-  --ground: #e3e7e1;      /* concrete of the throwing circle */
-  --panel: #f1f3ef;
-  --ink: #0f2419;         /* field-green black */
-  --ink-2: #3e5247;
-  --line: #c4ccc4;
-  --field: #1f5b3d;       /* grass */
-  --chalk: #ffffff;
-  --flag: #f0c419;        /* sector flag yellow */
-  --flag-ink: #1c1600;
-  --foul: #c8341f;
+  --paper: #f3f1ea; --panel: #fbfaf6; --ink: #10231a; --ink-2: #47584e; --line: #d4d1c4;
+  --field: #1f5b3d; --flag: #f0c419; --flag-ink: #1c1600; --lane: rgba(16,35,26,.09);
   --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
   --body: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
   --mono: "DM Mono", ui-monospace, Consolas, monospace;
-  --field-bg: #1f5b3d;
-  --field-line: rgba(255,255,255,.75);
-  --field-faint: rgba(255,255,255,.22);
+  /* background tone per section, swapped by script as you scroll */
+  --t-top: #f3f1ea; --t-work: #e3ece3; --t-experience: #f0eadb; --t-hackathons: #ece6cf;
+  --t-toolkit: #e6ebe2; --t-education: #e1eae4; --t-beyond: #f1e8d8; --t-contact: #f5e7ae;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ground: #0c1c14; --panel: #12271c; --ink: #e8eee7; --ink-2: #9db0a3; --line: #23402f;
-    --field: #3f9a6a; --chalk: #e8eee7; --flag: #f2cf3a; --flag-ink: #1c1600; --foul: #ff6a4d;
-    --field-bg: #163f2b; --field-line: rgba(232,238,231,.7); --field-faint: rgba(232,238,231,.16);
+    --paper: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #a2b3a8; --line: #27402f;
+    --field: #5bb886; --flag: #f2cf3a; --lane: rgba(232,238,231,.08);
+    --t-top: #0d1a13; --t-work: #0a2217; --t-experience: #17180f; --t-hackathons: #1a190d;
+    --t-toolkit: #0f1d16; --t-education: #0a211a; --t-beyond: #19170f; --t-contact: #221e08;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --ground: #0c1c14; --panel: #12271c; --ink: #e8eee7; --ink-2: #9db0a3; --line: #23402f;
-  --field: #3f9a6a; --chalk: #e8eee7; --flag: #f2cf3a; --flag-ink: #1c1600; --foul: #ff6a4d;
-  --field-bg: #163f2b; --field-line: rgba(232,238,231,.7); --field-faint: rgba(232,238,231,.16);
+  --paper: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #a2b3a8; --line: #27402f;
+  --field: #5bb886; --flag: #f2cf3a; --lane: rgba(232,238,231,.08);
+  --t-top: #0d1a13; --t-work: #0a2217; --t-experience: #17180f; --t-hackathons: #1a190d;
+  --t-toolkit: #0f1d16; --t-education: #0a211a; --t-beyond: #19170f; --t-contact: #221e08;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
 body {
-  margin: 0; background: var(--ground); color: var(--ink);
+  margin: 0; background: var(--paper); color: var(--ink);
   font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  transition: background-color .9s ease;
 }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 :focus-visible { outline: 2px solid var(--flag); outline-offset: 3px; border-radius: 2px; }
 h1, h2, h3 { text-wrap: balance; margin: 0; }
 p { margin: 0; }
-.mono { font-family: var(--mono); }
 .wrap {
-  max-width: 1200px; margin-inline: auto;
-  padding-left: max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  max-width: 1180px; margin-inline: auto; position: relative;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.label { font: 500 12px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.label { font: 500 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+
+/* ---------- contour lines behind everything (they reshape as you scroll) ---------- */
+.topo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.topo svg { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; will-change: transform; }
+.topo path { fill: none; stroke: var(--lane); stroke-width: 1.3; vector-effect: non-scaling-stroke; }
+.topo path.major { stroke-width: 2; }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--flag); transform-origin: 0 50%; transform: scaleX(0); }
 
 /* ---------- header ---------- */
 .top {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-  background: color-mix(in srgb, var(--ground) 88%, transparent);
-  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
 }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
-.brand { font: 900 24px/1 var(--display); letter-spacing: .02em; text-decoration: none; text-transform: uppercase; }
-.brand span { color: var(--field); }
-.links { display: flex; gap: 26px; align-items: center; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
+.brand { font: 900 23px/1 var(--display); letter-spacing: .03em; text-decoration: none; text-transform: uppercase; }
+.links { display: flex; gap: 24px; align-items: center; }
 .links a { text-decoration: none; font-size: 15px; font-weight: 500; color: var(--ink-2); }
-.links a:hover { color: var(--ink); }
+.links a:hover, .links a.on { color: var(--ink); }
+.links a.on { box-shadow: 0 2px 0 var(--flag); }
 .toggle {
   width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel);
   color: var(--ink); cursor: pointer; display: grid; place-items: center;
 }
 
 /* ---------- hero ---------- */
-.hero { padding-block: 56px 72px; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 48px; align-items: center; }
-.hero-copy { min-width: 0; }
-.hero-copy .label { display: flex; gap: 10px; flex-wrap: wrap; }
-.hero-copy .label b { color: var(--field); font-weight: 500; }
-h1 {
-  font: 900 clamp(84px, 13vw, 190px)/.82 var(--display);
-  text-transform: uppercase; letter-spacing: -.01em; margin-top: 18px;
-}
-h1 .last { display: block; -webkit-text-stroke: 2px var(--ink); color: transparent; }
-.intro { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.5; max-width: 32em; margin-top: 26px; color: var(--ink-2); }
-.intro strong { color: var(--ink); font-weight: 600; }
-.ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.hero { padding-block: 64px 56px; }
+.hero .wrap.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+h1 { font: 900 clamp(84px, 12.5vw, 176px)/.84 var(--display); text-transform: uppercase; letter-spacing: -.005em; margin-top: 18px; }
+h1 span { display: block; color: var(--field); }
+.intro { font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; max-width: 30em; margin-top: 26px; }
+.intro + .intro { margin-top: 12px; color: var(--ink-2); font-size: 17px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 4px;
   font: 600 15px/1 var(--body); text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink);
-  background: transparent; cursor: pointer; transition: transform .15s, background .15s, color .15s;
+  background: transparent; cursor: pointer;
 }
-.btn:hover { transform: translateY(-2px); }
-.btn.solid { background: var(--ink); color: var(--ground); }
+.btn:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
 .btn.flag { background: var(--flag); color: var(--flag-ink); border-color: var(--flag); }
+.btn.flag:hover { background: color-mix(in srgb, var(--flag) 85%, #000); }
+.small-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 18px; font-size: 15px; }
+.small-links a { font-weight: 600; text-decoration: none; color: var(--ink-2); border-bottom: 1.5px solid var(--line); }
+.small-links a:hover { color: var(--ink); border-color: var(--flag); }
 
-/* hero photo, links and fact strip */
-.hero-id { display: flex; align-items: center; gap: 18px; }
-.hero-id .label { gap: 8px 18px; }
-.hero-id .open { flex-basis: 100%; }
-.open { display: inline-flex !important; align-items: center; gap: 8px; color: var(--ink); }
-.open i { width: 8px; height: 8px; border-radius: 50%; background: #2fbf63; box-shadow: 0 0 0 4px color-mix(in srgb, #2fbf63 25%, transparent); }
-.mini-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 16px; }
-.mini-links a { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--ink-2); border-bottom: 1.5px solid var(--line); }
-.mini-links a:hover { color: var(--ink); border-color: var(--flag); }
-.facts { --t: #e3e7e1; grid-column: 1 / -1; margin-top: 8px; padding: 16px 20px; border-radius: 6px; background: #0b1a12; border: 1px solid var(--line); color: var(--t); font-size: 14px; min-width: 0; }
-.facts-cmd { color: color-mix(in srgb, var(--t) 70%, transparent); }
-.facts-cmd .p { color: #5fe08d; }
-.facts dl { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
-.facts dl > div { display: flex; gap: 0; min-width: 0; overflow-wrap: anywhere; }
-.facts dt { color: var(--flag); }
-.facts dt::after { content: "="; color: color-mix(in srgb, var(--t) 55%, transparent); }
-.facts dd { margin: 0; }
-.facts dd.hi { font-weight: 500; color: #5fe08d; }
-.facts .cm { margin-left: 8px; color: color-mix(in srgb, var(--t) 55%, transparent); }
+/* two live projects pinned to the hero */
+.shots { position: relative; aspect-ratio: 1 / .84; min-width: 0; }
+.shot {
+  position: absolute; width: 80%; display: block; text-decoration: none; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  box-shadow: 0 24px 50px -28px rgba(10,30,20,.55); transition: transform .25s ease;
+}
+.shot.a { top: 0; left: 0; transform: rotate(-2.5deg); }
+.shot.b { bottom: 0; right: 0; transform: rotate(2deg); }
+.shot:hover { transform: rotate(0) scale(1.015); z-index: 2; }
+.shot .bar { display: flex; justify-content: space-between; gap: 10px; padding: 7px 11px; font: 400 12px var(--mono); border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.shot .bar b { color: var(--field); font-weight: 500; white-space: nowrap; }
+.shot .bar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shot img { width: 100%; height: auto; }
 
-/* CI pipeline panel */
-.ci {
-  min-width: 0; background: var(--field-bg); color: #fff; border-radius: 6px; padding: 22px;
-  box-shadow: 0 30px 60px -35px rgba(10,30,20,.6); display: grid; gap: 14px;
-}
-.ci-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-.ci-repo { font-size: 14px; color: var(--field-line); }
-.ci-repo b { color: #fff; font-weight: 500; }
-.ci-status { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; padding: 5px 10px; border-radius: 999px; background: var(--flag); color: var(--flag-ink); }
-.ci-status[data-s="ok"] { background: #5fe08d; color: #062b14; }
-.ci-meta { font-size: 12.5px; color: var(--field-line); }
-.ci-meta b { color: #fff; font-weight: 500; }
-.ci-stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.ci-stages li {
-  display: flex; align-items: center; gap: 9px; padding: 11px 12px; border-radius: 4px;
-  background: rgba(255,255,255,.06); border: 1px solid var(--field-faint); min-width: 0; transition: background .3s, border-color .3s;
-}
-.ci-stages .nm { font: 700 19px/1 var(--display); text-transform: uppercase; letter-spacing: .02em; flex: 1; min-width: 0; overflow-wrap: anywhere; }
-.ci-stages .tm { font-size: 11.5px; color: var(--field-line); font-variant-numeric: tabular-nums; }
-.ci-stages .ic { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--field-faint); flex: none; position: relative; }
-.ci-stages li.run { border-color: var(--flag); background: rgba(240,196,25,.1); }
-.ci-stages li.run .ic { border-color: var(--flag); border-top-color: transparent; animation: spin .7s linear infinite; }
-.ci-stages li.ok .ic { background: #5fe08d; border-color: #5fe08d; }
-.ci-stages li.ok .ic::after { content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px; border: solid #062b14; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.ci-log {
-  background: rgba(0,0,0,.28); border-radius: 4px; padding: 14px; font-size: 13px; line-height: 1.75;
-  min-height: 186px; color: #d8e3dc; overflow-wrap: anywhere;
-}
-.ci-log .s { color: var(--flag); }
-.ci-log .ok { color: #5fe08d; }
-.ci-log .cur::after { content: "▍"; color: var(--flag); animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.ci-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 12.5px; color: var(--field-line); }
-.ci-btn { background: none; border: 1px solid var(--field-faint); color: #fff; font-size: 12.5px; padding: 7px 12px; border-radius: 4px; cursor: pointer; }
-.ci-btn:hover { border-color: var(--flag); }
-.ci-btn:disabled { opacity: .45; cursor: default; }
+/* numbers strip */
+.numbers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 64px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.numbers div { padding: 18px 18px 16px 0; min-width: 0; }
+.numbers div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+.numbers b { display: block; font: 900 clamp(44px, 5.5vw, 68px)/.9 var(--display); }
+.numbers span { font-size: 14.5px; color: var(--ink-2); }
 
 /* ---------- sections ---------- */
-section.sec { padding-block: 96px; border-top: 1px solid var(--line); }
-.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 44px; }
-h2 { font: 800 clamp(48px, 7vw, 92px)/.9 var(--display); text-transform: uppercase; }
-.sec-head p { max-width: 30em; color: var(--ink-2); }
+section.sec { padding-block: 92px; }
+.sec-head { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; margin-bottom: 40px; }
+.sec-no {
+  font: 900 30px/1 var(--display); background: var(--flag); color: var(--flag-ink);
+  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 4px; flex: none;
+}
+h2 { font: 800 clamp(48px, 7vw, 88px)/.88 var(--display); text-transform: uppercase; }
+.sec-note { flex-basis: 100%; max-width: 36em; color: var(--ink-2); }
 
 /* projects */
 .projects { display: grid; gap: 28px; }
 .proj {
-  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 0;
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
 }
-.proj-media { position: relative; background: var(--field-bg); min-height: 300px; overflow: hidden; }
-.proj-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 6s ease; }
-.proj:hover .proj-media img { transform: scale(1.04); }
-.proj-media .ph { position: absolute; inset: 0; display: grid; place-items: center; padding: 28px; }
-.proj-media img + .ph { display: none; }
-/* real screenshots keep their shape instead of stretching with the text column */
-.proj-media:has(img) { align-self: start; min-height: 0; border-bottom-right-radius: 6px; }
-.proj-media:has(img) img { height: auto; }
-.proj-body { padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.proj-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; }
-.proj h3 { font: 800 44px/.95 var(--display); text-transform: uppercase; }
+.proj-media { border-right: 1px solid var(--line); align-self: start; }
+.proj-media .bar { padding: 8px 12px; font: 400 12.5px var(--mono); color: var(--ink-2); border-bottom: 1px solid var(--line); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.proj-media img { width: 100%; height: auto; }
+.proj-body { padding: 30px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.proj-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.proj h3 { font: 800 46px/.95 var(--display); text-transform: uppercase; }
 .proj p { color: var(--ink-2); }
 .proj p b { color: var(--ink); font-weight: 600; }
-.stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
-.stack span { font: 400 12.5px/1 var(--mono); padding: 6px 9px; border: 1px solid var(--line); border-radius: 3px; }
+.built { font: 400 13.5px/1.5 var(--mono); color: var(--ink-2); }
+.built b { color: var(--ink); font-weight: 500; }
 .more { border-top: 1px solid var(--line); padding-top: 10px; }
-.more summary { cursor: pointer; font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); list-style: none; display: flex; align-items: center; gap: 8px; }
+.more summary { cursor: pointer; font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; list-style: none; display: flex; align-items: center; gap: 8px; }
 .more summary::-webkit-details-marker { display: none; }
 .more summary::before { content: "+"; display: grid; place-items: center; width: 18px; height: 18px; border: 1px solid var(--ink); border-radius: 3px; font-size: 13px; line-height: 1; }
 .more[open] summary::before { content: "−"; background: var(--flag); border-color: var(--flag); color: var(--flag-ink); }
 .more ul { margin: 12px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 15.5px; display: grid; gap: 6px; }
 .more li::marker { color: var(--field); }
 .more b { color: var(--ink); font-weight: 600; }
-.proj-links { display: flex; gap: 18px; flex-wrap: wrap; }
-.proj-links a { font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 2px solid var(--flag); }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--field-faint); width: 100%; max-width: 440px; border-radius: 4px; overflow: hidden; }
-.stats div { background: var(--field-bg); padding: 22px 16px; color: #fff; }
-.stats b { display: block; font: 900 54px/1 var(--display); color: var(--flag); }
-.stats span { font: 400 12px/1.35 var(--mono); color: var(--field-line); }
+.proj-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+.proj-links .btn { padding: 10px 16px; font-size: 14.5px; }
 
-/* placeholder art inside project media */
-.mock-window { width: min(100%, 420px); background: var(--panel); border-radius: 6px; overflow: hidden; box-shadow: 0 20px 40px -20px rgba(0,0,0,.5); }
-.mock-window .bar { height: 26px; background: var(--line); display: flex; gap: 6px; align-items: center; padding-left: 10px; }
-.mock-window .bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-2); opacity: .5; }
-.mock-window .in { padding: 16px; display: grid; gap: 10px; }
-.mock-row { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 4px; }
-.mock-row i { width: 30px; height: 30px; border-radius: 50%; background: var(--field); flex: none; }
-.mock-row s { flex: 1; height: 8px; border-radius: 4px; background: var(--line); text-decoration: none; }
-.mock-row em { font: 500 11px var(--mono); font-style: normal; color: var(--field); }
-
-/* results sheet (experience) */
-.results { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+/* results sheet (experience, hackathons) */
 .results-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
-.results th { text-align: left; padding: 14px 18px; background: var(--ink); color: var(--ground); font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.results { width: 100%; border-collapse: collapse; }
+.results th { text-align: left; padding: 13px 18px; background: var(--ink); color: var(--paper); font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 .results td { padding: 22px 18px; border-top: 1px solid var(--line); vertical-align: top; }
 .results tr:first-child td { border-top: 0; }
 .results .when { font: 400 14px var(--mono); white-space: nowrap; color: var(--ink-2); }
@@ -231,61 +182,60 @@ h2 { font: 800 clamp(48px, 7vw, 92px)/.9 var(--display); text-transform: upperca
 .results ul { margin: 0; padding-left: 18px; max-width: 46em; }
 .results li { margin-bottom: 4px; }
 .results li::marker { color: var(--field); }
-.kind { display: inline-block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 4px 7px; border-radius: 3px; background: var(--ground); border: 1px solid var(--line); white-space: nowrap; }
+.kind { display: inline-block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); white-space: nowrap; }
 
 /* toolkit */
-.kit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.kit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
 .kit > div { padding: 22px 22px 8px 0; min-width: 0; }
 .kit h3 { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 14px; }
 .kit ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .kit li { font: 700 30px/1.05 var(--display); text-transform: uppercase; }
-.kit li small { font: 400 13px var(--mono); text-transform: none; color: var(--ink-2); margin-left: 6px; }
 
 /* education */
 .edu { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; }
-.edu-main { background: var(--field-bg); color: #fff; border-radius: 6px; padding: 34px; display: grid; gap: 22px; }
-.edu-main .label { color: var(--field-line); }
+.edu-main { background: #1f5b3d; color: #fff; border-radius: 6px; padding: 34px; display: grid; gap: 22px; }
+.edu-main .label { color: rgba(255,255,255,.75); }
 .edu-main h3 { font: 800 46px/.95 var(--display); text-transform: uppercase; }
 .gpa-row { display: flex; flex-wrap: wrap; gap: 20px 44px; }
 .gpa { display: flex; align-items: baseline; gap: 10px; }
-.gpa b { font: 900 96px/.8 var(--display); color: var(--flag); }
-.gpa span { font: 400 14px var(--mono); color: var(--field-line); }
+.gpa b { font: 900 92px/.8 var(--display); color: #f0c419; }
+.gpa span { font: 400 14px var(--mono); color: rgba(255,255,255,.75); }
 .mods { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; font-size: 15px; }
 .mods li { padding-left: 16px; position: relative; }
-.mods li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; background: var(--flag); transform: rotate(45deg); }
-.edu-side { display: grid; gap: 14px; align-content: start; }
+.mods li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; background: #f0c419; transform: rotate(45deg); }
+.edu-side { display: grid; align-content: start; }
 .edu-item { padding: 20px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
 .edu-item:first-child { padding-top: 0; }
-.edu-item h3 { font: 700 22px/1.1 var(--body); }
+.edu-item h3 { font: 700 22px/1.15 var(--body); }
 .edu-item p { color: var(--ink-2); font-size: 15px; }
 
-/* beyond */
-.beyond { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
-.beyond > div { display: grid; gap: 10px; align-content: start; }
+/* off the keyboard */
+.beyond { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.beyond > div { display: grid; gap: 10px; align-content: start; border-top: 2px solid var(--ink); padding-top: 16px; }
 .beyond h3 { font: 800 34px/.95 var(--display); text-transform: uppercase; }
 .beyond p { color: var(--ink-2); }
-.beyond .meet { font: 400 14px var(--mono); display: grid; gap: 4px; margin-top: 6px; }
+.meets { font: 400 13.5px/1.7 var(--mono); }
 
 /* contact */
-.contact { padding-block: 110px 40px; border-top: 1px solid var(--line); }
-.contact h2 { font-size: clamp(64px, 12vw, 170px); }
-.mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 34px; }
-.mail { font: 600 clamp(22px, 3.4vw, 40px)/1.1 var(--body); text-decoration: none; border-bottom: 3px solid var(--flag); overflow-wrap: anywhere; user-select: all; }
-.contact .ctas { margin-top: 26px; }
-footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font: 400 13px var(--mono); color: var(--ink-2); }
+.contact { padding-block: 110px 36px; }
+.contact h2 { font-size: clamp(60px, 11vw, 150px); margin-top: 14px; }
+.contact .intro { color: var(--ink-2); }
+.mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 30px; }
+.mail { font: 600 clamp(22px, 3.4vw, 40px)/1.1 var(--body); text-decoration: none; border-bottom: 3px solid var(--flag); overflow-wrap: anywhere; }
+footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font: 400 13px var(--mono); color: var(--ink-2); }
 
-/* load sequence (starts visible; only moves) */
-@media (prefers-reduced-motion: no-preference) {
-  .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-  .rise.d1 { animation-delay: .08s } .rise.d2 { animation-delay: .16s } .rise.d3 { animation-delay: .24s }
-  @keyframes rise { from { transform: translateY(18px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; } body { transition: none; } .shot { transition: none; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .proj-media img { transition: none; } .ci-stages li.run .ic, .ci-log .cur::after { animation: none; } }
 
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
-  .hero .wrap, .proj, .edu { grid-template-columns: minmax(0, 1fr); }
-  .proj-media { min-height: 240px; aspect-ratio: 16 / 10; }
+  .hero .wrap.split, .proj, .edu { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap.split { gap: 44px; }
+  .proj-media { border-right: 0; border-bottom: 1px solid var(--line); }
+  .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .numbers div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .numbers div:nth-child(n+3) { border-top: 1px solid var(--line); }
   .kit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .beyond { grid-template-columns: minmax(0, 1fr); }
   .links a.opt { display: none; }
@@ -293,14 +243,15 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
 @media (max-width: 600px) {
   .links { gap: 14px; }
   .links a.opt2 { display: none; }
+  .hero { padding-top: 40px; }
   section.sec { padding-block: 72px; }
-  .proj-body, .edu-main { padding: 24px; }
+  .sec-no { width: 42px; height: 42px; font-size: 24px; }
+  .proj-body, .edu-main { padding: 22px; }
+  .proj h3 { font-size: 40px; }
   .mods { grid-template-columns: minmax(0, 1fr); }
   .kit { grid-template-columns: minmax(0, 1fr); }
   .kit > div { border-bottom: 1px solid var(--line); padding-right: 0; }
-  .ci { padding: 16px; }
-  .ci-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ci-log { min-height: 230px; }
+  .gpa b { font-size: 76px; }
   .results thead { display: none; }
   .results tr { display: grid; gap: 10px; padding: 20px 16px; border-top: 1px solid var(--line); }
   .results tr:first-child { border-top: 0; }
@@ -310,13 +261,16 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
 </head>
 <body>
 
+<div class="topo" aria-hidden="true">
+  <svg id="topo" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"></svg>
+</div>
+
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Aaron<span>.</span>Tan</a>
+    <a class="brand" href="#top">Aaron Tan</a>
     <nav class="links" aria-label="Sections">
-      <a href="#work">Work</a>
+      <a href="#work">Projects</a>
       <a href="#experience" class="opt2">Experience</a>
-      <a href="#toolkit" class="opt">Toolkit</a>
       <a href="#education" class="opt">Education</a>
       <a href="#contact">Contact</a>
       <button class="toggle" id="themeBtn" aria-label="Switch light or dark theme">
@@ -324,142 +278,116 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
       </button>
     </nav>
   </div>
+  <div class="progress" id="progress"></div>
 </header>
 
-<main id="top">
+<main>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero">
+<section class="hero" id="top" data-tone="top">
+  <div class="wrap split">
+    <div>
+      <div class="label">Year 2 · Diploma in IT · Singapore Polytechnic</div>
+      <h1>Aaron <span>Tan</span></h1>
+      <p class="intro">I'm an IT student specialising in cybersecurity and cloud. I build web apps with Node.js and SQL, and two of them are live: you can try both from this page.</p>
+      <p class="intro">I'm looking for a software development internship.</p>
+      <div class="ctas">
+        <a class="btn flag" href="resume.pdf" target="_blank" rel="noopener" data-t="resume (hero)">Résumé (PDF)</a>
+        <a class="btn" href="#work">See projects</a>
+      </div>
+      <div class="small-links">
+        <a href="mailto:natnoraa27@gmail.com" data-t="email (hero)">Email</a>
+        <a href="https://www.linkedin.com/in/aarontann/" target="_blank" rel="noopener" data-t="linkedin (hero)">LinkedIn</a>
+        <a href="https://github.com/aar0ngit" target="_blank" rel="noopener" data-t="github (hero)">GitHub</a>
+      </div>
+    </div>
+
+    <div class="shots">
+      <a class="shot a" href="https://stubby-bp2p.onrender.com/" target="_blank" rel="noopener" data-t="stubby live (hero)">
+        <div class="bar"><span>stubby-bp2p.onrender.com</span><b>● live</b></div>
+        <img src="assets/stubby.jpg" alt="Stubby, a study-partner matching site" width="800" height="515">
+      </a>
+      <a class="shot b" href="https://planet-hopper-three.vercel.app/" target="_blank" rel="noopener" data-t="planet hopper live (hero)">
+        <div class="bar"><span>planet-hopper-three.vercel.app</span><b>● live</b></div>
+        <img src="assets/planet-hopper.jpg" alt="Planet Hopper gameplay: a runner dodging spikes on an alien planet" width="800" height="499">
+      </a>
+    </div>
+  </div>
+
   <div class="wrap">
-    <div class="hero-copy">
-      <div class="hero-id rise">
-        <div class="label"><span class="open"><i></i>Open to internships · Singapore</span><b>Year 2</b><span>Diploma in IT</span><span>Singapore Polytechnic</span></div>
-      </div>
-      <h1 class="rise d1">Aaron<span class="last">Tan</span></h1>
-      <p class="intro rise d2">I build <strong>full-stack web apps</strong> and I study how they get broken. I'm specialising in <strong>Cybersecurity and Cloud Computing</strong>, and I'm looking for a <strong>software development internship</strong>.</p>
-      <div class="ctas rise d3">
-        <a class="btn solid" href="#work">See my projects</a>
-        <a class="btn flag" href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
-      </div>
-      <div class="mini-links rise d3">
-        <a href="mailto:natnoraa27@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/aarontann/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="https://github.com/aar0ngit" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-    </div>
-
-    <div class="ci rise d2" id="ci">
-      <div class="ci-head">
-        <span class="ci-repo mono">aar0ngit / <b>aaron-tan</b></span>
-        <span class="ci-status mono" id="ciStatus" data-s="run">Running</span>
-      </div>
-      <div class="ci-meta mono">main · <span id="ciSha">a63f400</span> · triggered by <b>internship-season</b></div>
-      <ol class="ci-stages" id="ciStages">
-        <li data-log="added 2 live projects, 1 diploma in progress, 0 vulnerabilities"><span class="ic" aria-hidden="true"></span><span class="nm">install</span><span class="tm mono"></span></li>
-        <li data-log="checked HTML, CSS, JavaScript, Node.js, SQL: no errors"><span class="ic" aria-hidden="true"></span><span class="nm">lint</span><span class="tm mono"></span></li>
-        <li data-log="Stubby ✓ 41 E2E specs · Planet Hopper ✓ live · PolyFinTech100 ✓"><span class="ic" aria-hidden="true"></span><span class="nm">test</span><span class="tm mono"></span></li>
-        <li data-log="specialisation: Cybersecurity + Cloud Computing · Ethical Hacking Essentials ✓"><span class="ic" aria-hidden="true"></span><span class="nm">security-scan</span><span class="tm mono"></span></li>
-        <li data-log="Year 2 Diploma in IT · cGPA 3.71 / 4.00 · last semester 3.87"><span class="ic" aria-hidden="true"></span><span class="nm">build</span><span class="tm mono"></span></li>
-        <li data-log="ready → software development internship · live demos on Vercel and Render"><span class="ic" aria-hidden="true"></span><span class="nm">deploy</span><span class="tm mono"></span></li>
-      </ol>
-      <div class="ci-log mono" id="ciLog" aria-live="polite"></div>
-      <div class="ci-foot">
-        <span class="mono" id="ciTotal">&nbsp;</span>
-        <button type="button" class="ci-btn mono" id="ciRerun">↻ Re-run pipeline</button>
-      </div>
-    </div>
-
-    <div class="facts mono rise d3">
-      <div class="facts-cmd"><span class="p">aaron@sp:~$</span> cat profile.env</div>
-      <dl>
-        <div><dt>SCHOOL</dt><dd>"Singapore Polytechnic"</dd></div>
-        <div><dt>DIPLOMA</dt><dd>"Information Technology"</dd></div>
-        <div><dt>SPEC</dt><dd>"Cybersecurity, Cloud"</dd></div>
-        <div><dt>CGPA</dt><dd class="hi">3.71</dd><span class="cm"># last sem 3.87</span></div>
-        <div><dt>GRAD</dt><dd>2028-04</dd></div>
-      </dl>
+    <div class="numbers">
+      <div><b>3.71</b><span>cumulative GPA</span></div>
+      <div><b>3.87</b><span>GPA last semester</span></div>
+      <div><b>2</b><span>projects live on the web</span></div>
+      <div><b>2028</b><span>expected graduation</span></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== WORK ===================== -->
-<section class="sec" id="work">
+<section class="sec" id="work" data-tone="work">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Projects</h2>
-      <p>School projects from Singapore Polytechnic. Two are live: open them and try them. Expand any card for the details.</p>
+      <span class="sec-no">1</span><h2>Projects</h2>
+      <p class="sec-note">Both are school projects and both are live. Stubby runs on a free server, so it can take about a minute to wake up.</p>
     </div>
 
     <div class="projects">
-      <article class="proj">
+      <article class="proj" id="proj-stubby">
         <div class="proj-media">
-          <img src="assets/stubby.jpg" alt="Stubby landing page: Find study partners that actually fit, with a 94% match card" onerror="this.remove()">
-          <div class="ph" aria-hidden="true">
-            <div class="mock-window"><div class="bar"><i></i><i></i><i></i></div>
-              <div class="in">
-                <div class="mock-row"><i></i><s></s><em>94% match</em></div>
-                <div class="mock-row"><i></i><s></s><em>88% match</em></div>
-                <div class="mock-row"><i></i><s></s><em>81% match</em></div>
-              </div>
-            </div>
-          </div>
+          <div class="bar">stubby-bp2p.onrender.com</div>
+          <img src="assets/stubby.jpg" alt="Stubby landing page: Find study partners that actually fit, with a 94% match card" width="800" height="515" loading="lazy">
         </div>
         <div class="proj-body">
-          <div class="proj-meta"><span class="label">Team of 4</span><span class="label">May 2026 – Present</span></div>
+          <div class="proj-meta"><span class="label">Team of 4</span><span class="label">May 2026 – now</span></div>
           <h3>Stubby</h3>
-          <p>A study platform that <b>matches students with compatible study partners</b>, then gives them real-time chat and shared study sessions. I worked on both the front-end interface and the back-end data handling.</p>
-          <p>Built for our CI/CD module, so every change went through <b>pull requests, automated tests and a GitHub Actions pipeline</b> before it reached the live site.</p>
-          <details class="more">
+          <p>Matches students with study partners who take the same modules and like to study the same way, then gives them chat and shared study sessions. I worked on both the front end and the back end.</p>
+          <p>It's our CI/CD module project, so every change goes through <b>a pull request, automated tests and a GitHub Actions pipeline</b> before it reaches the live site.</p>
+          <details class="more" data-t="stubby details">
             <summary>More details</summary>
             <ul>
-              <li><b>Real-time chat</b> with Socket.IO: typing indicators, read receipts, online presence, polls, group chats and a shared whiteboard.</li>
-              <li><b>Matchmaking</b> on modules and study preferences, friend requests by QR code, community posts and study sessions with micro-goals.</li>
-              <li><b>Testing:</b> around 90 Jest unit and integration test files (with Supertest) and 41 Playwright end-to-end specs.</li>
-              <li><b>CI/CD:</b> GitHub Actions runs ESLint, Prettier and every test suite, then publishes QA reports to GitHub Pages. The app deploys to Render with a PostgreSQL database.</li>
-              <li>A small <b>Python moderation service</b> sits beside the Node.js app.</li>
+              <li><b>Real-time chat</b> with Socket.IO: typing indicators, read receipts, online status, polls, group chats and a shared whiteboard.</li>
+              <li><b>Matching</b> on modules and study preferences, friend requests by QR code, community posts, and study sessions with small goals.</li>
+              <li><b>Testing:</b> around 90 Jest test files (with Supertest) and 41 Playwright end-to-end specs.</li>
+              <li><b>CI/CD:</b> GitHub Actions runs ESLint, Prettier and every test suite, then publishes QA reports to GitHub Pages. The app runs on Render with PostgreSQL.</li>
+              <li>A small <b>Python moderation service</b> runs beside the Node.js app.</li>
             </ul>
           </details>
-          <div class="stack"><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Socket.IO</span><span>Jest</span><span>Playwright</span><span>GitHub Actions</span></div>
-          <div class="proj-links"><a href="https://stubby-bp2p.onrender.com/" target="_blank" rel="noopener">View live project ↗</a></div>
+          <p class="built"><b>Built with</b> Node.js, Express, PostgreSQL, Socket.IO, Jest, Playwright, GitHub Actions</p>
+          <div class="proj-links"><a class="btn flag" href="https://stubby-bp2p.onrender.com/" target="_blank" rel="noopener" data-t="stubby live">Open Stubby</a></div>
         </div>
       </article>
 
-      <article class="proj">
+      <article class="proj" id="proj-hopper">
         <div class="proj-media">
-          <img src="assets/planet-hopper.jpg" alt="Screenshot of Planet Hopper gameplay: a runner dodging spikes and drones on a cartoon alien planet" onerror="this.remove()">
-          <div class="ph" aria-hidden="true"><canvas id="hopper" width="420" height="260" style="width:min(100%,420px);height:auto;border-radius:6px"></canvas></div>
+          <div class="bar">planet-hopper-three.vercel.app</div>
+          <img src="assets/planet-hopper.jpg" alt="Planet Hopper gameplay: a runner dodging spikes and drones on a cartoon alien planet" width="800" height="499" loading="lazy">
         </div>
         <div class="proj-body">
           <div class="proj-meta"><span class="label">Solo</span><span class="label">Jan – Feb 2026</span><span class="label">Back-End Web Development</span></div>
           <h3>Planet Hopper</h3>
-          <p>A <b>wellness challenge app with a runner game built in</b>: complete challenges to earn credits, buy power-ups, then hop across five planets. I built it alone, front end to database.</p>
-          <p>It's <b>live</b>: click <b>Play as guest</b> and you're in a run within seconds, no sign-up.</p>
-          <details class="more">
+          <p>A wellness challenge app with a runner game built in. You complete challenges to earn credits, spend them on power-ups, then run across five planets. I built all of it, from the game to the database.</p>
+          <p>Click <b>Play as guest</b> on the site and you're in a run in a few seconds. No sign-up needed.</p>
+          <details class="more" data-t="planet hopper details">
             <summary>More details</summary>
             <ul>
-              <li><b>Server-side anti-cheat:</b> each run gets a signed game token tied to the player and planet, and the server times the run itself, so editing the time in the browser does nothing.</li>
-              <li><b>Auth:</b> bcrypt password hashing, JWT access tokens and refresh tokens; every SQL query is parameterised.</li>
-              <li><b>Game:</b> HTML canvas with jump, duck and ground-slam physics, five planets with their own speed, music and leaderboard.</li>
-              <li><b>Shop and loadout:</b> buy Nitro Boosts and Shields, equip up to four before a run, upload a custom character skin.</li>
-              <li><b>Deployment:</b> Express runs as a Vercel serverless function in Singapore, backed by a TiDB Cloud (MySQL-compatible) database. Uploads are stored in the database because serverless disks are read-only.</li>
-              <li>REST API of 30+ endpoints, designed and tested in Postman.</li>
+              <li><b>Anti-cheat on the server:</b> each run gets a signed token tied to the player and planet, and the server times the run itself, so changing the time in the browser does nothing.</li>
+              <li><b>Login:</b> bcrypt password hashing, JWT access and refresh tokens, and parameterised SQL for every query.</li>
+              <li><b>Game:</b> HTML canvas with jump, duck and ground-slam, and five planets with their own speed, music and leaderboard.</li>
+              <li><b>Shop:</b> buy Nitro Boosts and Shields, equip up to four before a run, and upload your own character skin.</li>
+              <li><b>Hosting:</b> Express runs as a Vercel serverless function in Singapore with a TiDB Cloud (MySQL-compatible) database. Uploads are stored in the database because serverless disks are read-only.</li>
+              <li>A REST API of 30+ endpoints, tested in Postman.</li>
             </ul>
           </details>
-          <div class="stack"><span>Node.js</span><span>Express</span><span>MySQL</span><span>JWT</span><span>Canvas</span><span>Vercel</span></div>
-          <div class="proj-links"><a href="https://planet-hopper-three.vercel.app/" target="_blank" rel="noopener">View live project ↗</a><a href="https://github.com/aar0ngit/PlanetHopper" target="_blank" rel="noopener">Source on GitHub ↗</a></div>
+          <p class="built"><b>Built with</b> Node.js, Express, MySQL, JWT, HTML canvas, Vercel</p>
+          <div class="proj-links"><a class="btn flag" href="https://planet-hopper-three.vercel.app/" target="_blank" rel="noopener" data-t="planet hopper live">Play Planet Hopper</a><a class="btn" href="https://github.com/aar0ngit/PlanetHopper" target="_blank" rel="noopener" data-t="planet hopper github">Source code</a></div>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===================== EXPERIENCE ===================== -->
-<section class="sec" id="experience">
+<section class="sec" id="experience" data-tone="experience">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>Experience</h2>
-      <p>Part-time and holiday jobs. Showing up on time and doing the work properly matters in every job.</p>
-    </div>
+    <div class="sec-head"><span class="sec-no">2</span><h2>Experience</h2></div>
     <div class="results-scroll">
       <table class="results">
         <thead><tr><th>When</th><th>Role</th><th>Type</th><th>What I did</th></tr></thead>
@@ -487,10 +415,9 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
   </div>
 </section>
 
-<!-- ===================== HACKATHONS ===================== -->
-<section class="sec" id="hackathons">
+<section class="sec" id="hackathons" data-tone="hackathons">
   <div class="wrap">
-    <div class="sec-head"><h2>Hackathons</h2><p>Competitions I've entered with a team.</p></div>
+    <div class="sec-head"><span class="sec-no">3</span><h2>Hackathons</h2></div>
     <div class="results-scroll">
       <table class="results">
         <thead><tr><th>When</th><th>Event</th><th>Result</th><th>What we did</th></tr></thead>
@@ -500,9 +427,9 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
             <td><div class="role">PolyFinTech100 API Hackathon 2026</div><div class="org">OCBC challenge · Team project</div></td>
             <td><span class="kind">Participant</span></td>
             <td><ul>
-              <li>Worked on OCBC's challenge: autonomous AI agents that make decisions across a bank customer's journey.</li>
-              <li>Shaped a concept for an AI agent that anticipates customer needs and personalises advice, while keeping a human in control of key decisions.</li>
-              <li>Learnt to scope a real industry problem as a team and pitch an idea to judges against a fixed deadline.</li>
+              <li>Took on OCBC's challenge: AI agents that make decisions across a bank customer's journey.</li>
+              <li>Came up with an AI agent that anticipates what a customer needs and tailors its advice, with a person still approving the big decisions.</li>
+              <li>Scoped the problem as a team and pitched it to the judges before the deadline.</li>
             </ul></td>
           </tr>
         </tbody>
@@ -511,26 +438,24 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
   </div>
 </section>
 
-<!-- ===================== TOOLKIT ===================== -->
-<section class="sec" id="toolkit">
+<section class="sec" id="toolkit" data-tone="toolkit">
   <div class="wrap">
-    <div class="sec-head"><h2>Toolkit</h2><p>What I've used in my projects and modules.</p></div>
+    <div class="sec-head"><span class="sec-no">4</span><h2>Toolkit</h2></div>
     <div class="kit">
       <div><h3>Languages</h3><ul><li>JavaScript</li><li>HTML / CSS</li><li>SQL</li></ul></div>
-      <div><h3>Back end &amp; data</h3><ul><li>Node.js</li><li>REST APIs</li><li>PostgreSQL</li><li>MySQL</li></ul></div>
-      <div><h3>Workflow</h3><ul><li>Git / GitHub</li><li>CI/CD</li><li>Postman</li><li>Agile <small>&amp; Waterfall</small></li></ul></div>
-      <div><h3>Specialisation</h3><ul><li>Cybersecurity</li><li>Cloud</li><li>UI design</li><li>Tech docs</li></ul></div>
+      <div><h3>Back end &amp; data</h3><ul><li>Node.js</li><li>Express</li><li>PostgreSQL</li><li>MySQL</li></ul></div>
+      <div><h3>Workflow</h3><ul><li>Git / GitHub</li><li>GitHub Actions</li><li>Jest / Playwright</li><li>Postman</li></ul></div>
+      <div><h3>Specialisation</h3><ul><li>Cybersecurity</li><li>Cloud</li><li>Vercel / Render</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== EDUCATION ===================== -->
-<section class="sec" id="education">
+<section class="sec" id="education" data-tone="education">
   <div class="wrap">
-    <div class="sec-head"><h2>Education</h2></div>
+    <div class="sec-head"><span class="sec-no">5</span><h2>Education</h2></div>
     <div class="edu">
       <div class="edu-main">
-        <div class="label">Apr 2025 – Present</div>
+        <div class="label">Apr 2025 – Apr 2028 (expected)</div>
         <h3>Singapore Polytechnic</h3>
         <p>Diploma in Information Technology, specialising in Cybersecurity and Cloud Computing.</p>
         <div class="gpa-row">
@@ -547,161 +472,133 @@ footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line);
       </div>
       <div class="edu-side">
         <div class="edu-item"><span class="label">Feb 2023 – Oct 2024</span><h3>Dunman Secondary School</h3><p>GCE O-Level · Media Club</p></div>
-        <div class="edu-item"><span class="label">Aug 2017 – May 2022</span><h3>British International School of Houston</h3><p>Track &amp; Field · Show Band (drums) · Media Club</p></div>
-        <div class="edu-item"><span class="label">May 2026 · LinkedIn</span><h3>Learning LinkedIn for Students</h3><p>Certification</p></div>
+        <div class="edu-item"><span class="label">Aug 2017 – May 2022 · Texas, USA</span><h3>British International School of Houston</h3><p>Track &amp; Field · Show Band (drums) · Media Club</p></div>
+        <div class="edu-item"><span class="label">May 2026 · LinkedIn Learning</span><h3>Learning LinkedIn for Students</h3><p>Certificate</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== BEYOND ===================== -->
-<section class="sec" id="beyond">
+<section class="sec" id="beyond" data-tone="beyond">
   <div class="wrap">
-    <div class="sec-head"><h2>Off the keyboard</h2></div>
+    <div class="sec-head"><span class="sec-no">6</span><h2>Off the keyboard</h2></div>
     <div class="beyond">
       <div>
-        <span class="label">Where it started</span>
-        <h3>Hardware &amp; games</h3>
-        <p>I built and repaired PCs, ran home servers and made games. Trying to stop cheating in my own games is what got me into security.</p>
+        <span class="label">How I got into security</span>
+        <h3>PCs &amp; games</h3>
+        <p>I build and repair PCs, run a few home servers and make games. Trying to stop people cheating in my own games is what got me into security.</p>
       </div>
       <div>
         <span class="label">CCA</span>
         <h3>Track &amp; Field</h3>
-        <p>I'm in the SP Track &amp; Field team (throws).</p>
+        <p>I throw for the SP Track &amp; Field team.</p>
+        <div class="meets">POL-ITE 2025<br>SA Inter Club 2025</div>
       </div>
       <div>
-        <span class="label">Before SP</span>
+        <span class="label">Five years in Houston</span>
         <h3>Drums &amp; video</h3>
-        <p>I played drums in my school show band in Houston and made videos with the media club at both my schools.</p>
+        <p>I went to school in Texas from 2017 to 2022, played drums in the show band and made videos with the media club.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== CONTACT ===================== -->
-<section class="contact" id="contact">
+<section class="contact" id="contact" data-tone="contact">
   <div class="wrap">
-    <span class="label">Internships · Singapore</span>
-    <h2 style="margin-top:14px">Let's talk.</h2>
+    <span class="sec-no">7</span>
+    <h2>Hiring an intern?</h2>
+    <p class="intro">Email is the fastest way to reach me. I usually reply within a day.</p>
     <div class="mail-row">
-      <a class="mail" href="mailto:natnoraa27@gmail.com">natnoraa27@gmail.com</a>
+      <a class="mail" href="mailto:natnoraa27@gmail.com" data-t="email (contact)">natnoraa27@gmail.com</a>
       <button class="btn" id="copyBtn" type="button">Copy email</button>
     </div>
     <div class="ctas">
-      <a class="btn flag" href="https://www.linkedin.com/in/aarontann/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="https://github.com/aar0ngit" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a>
+      <a class="btn flag" href="resume.pdf" target="_blank" rel="noopener" data-t="resume (contact)">Résumé (PDF)</a>
+      <a class="btn" href="https://www.linkedin.com/in/aarontann/" target="_blank" rel="noopener" data-t="linkedin (contact)">LinkedIn</a>
+      <a class="btn" href="https://github.com/aar0ngit" target="_blank" rel="noopener" data-t="github (contact)">GitHub</a>
     </div>
-    <footer><span>© 2026 Aaron Tan</span><span>Hand-built with HTML, CSS and JavaScript</span><a href="#top">Back to top ↑</a></footer>
+    <footer><span>© 2026 Aaron Tan</span><span>This site counts visits and which sections get read. No cookies, nothing personal.</span><a href="#top">Back to top</a></footer>
   </div>
 </section>
 
 </main>
 
 <script>
-// ---------- theme ----------
+// theme toggle
 (() => {
   const root = document.documentElement;
   try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
   document.getElementById('themeBtn').addEventListener('click', () => {
-    const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = isDark ? 'light' : 'dark';
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
     try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
-    window.dispatchEvent(new Event('themechange'));
+    setTone(currentTone);
   });
 })();
 
-// ---------- copy email ----------
+// copy email
+document.getElementById('copyBtn').addEventListener('click', e => {
+  const btn = e.currentTarget, mail = 'natnoraa27@gmail.com';
+  const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy email', 1600); };
+  const select = () => { const r = document.createRange(); r.selectNodeContents(document.querySelector('.mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  navigator.clipboard ? navigator.clipboard.writeText(mail).then(done, select) : select();
+});
+
+// background tone follows the section in view, nav link highlights
+let currentTone = 'top';
+function setTone(t) {
+  currentTone = t;
+  document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--t-' + t).trim();
+  document.querySelectorAll('.links a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + t));
+}
 (() => {
-  const btn = document.getElementById('copyBtn'), mail = 'natnoraa27@gmail.com';
-  btn.addEventListener('click', () => {
-    const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy email', 1600); };
-    if (navigator.clipboard) navigator.clipboard.writeText(mail).then(done, () => selectMail());
-    else selectMail();
-  });
-  function selectMail() {
-    const r = document.createRange(); r.selectNodeContents(document.querySelector('.mail'));
-    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-  }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setTone(e.target.dataset.tone); }),
+    { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('[data-tone]').forEach(s => io.observe(s));
+  setTone('top');
 })();
 
-// ---------- CI pipeline hero ----------
+// contour-map background: two "hills" whose rings bend as you scroll, plus a reading-progress bar
 (() => {
-  const stages = [...document.querySelectorAll('#ciStages li')];
-  const log = document.getElementById('ciLog'), status = document.getElementById('ciStatus'),
-        total = document.getElementById('ciTotal'), btn = document.getElementById('ciRerun'), sha = document.getElementById('ciSha');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const wait = ms => new Promise(r => setTimeout(r, ms));
-  let running = false;
-
-  const line = (html, cls) => { const d = document.createElement('div'); if (cls) d.className = cls; d.innerHTML = html; log.appendChild(d); return d; };
-  const randSha = () => Math.random().toString(16).slice(2, 9);
-
-  function finish() {
-    // final state: every stage passed, full log visible
-    log.innerHTML = '';
-    stages.forEach((li, i) => {
-      li.className = 'ok'; li.querySelector('.tm').textContent = (0.6 + i * 0.3).toFixed(1) + 's';
-      line(`<span class="ok">✓</span> <span class="s">${li.querySelector('.nm').textContent}</span>  ${li.dataset.log}`);
+  const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('topo'), bar = document.getElementById('progress');
+  const hills = [
+    { x: 840, y: 230, rings: 15, gap: 30, a: 0.4, b: 2.1, spin: 1 },
+    { x: 140, y: 860, rings: 13, gap: 32, a: 3.3, b: 0.7, spin: -1 },
+  ];
+  const paths = hills.map(h => Array.from({ length: h.rings }, (_, k) => {
+    const p = document.createElementNS(NS, 'path'); if (k % 5 === 4) p.setAttribute('class', 'major'); svg.appendChild(p); return p;
+  }));
+  const STEPS = 96;
+  function shape(prog) {
+    hills.forEach((h, i) => {
+      const t = prog * Math.PI * 1.6 * h.spin;
+      paths[i].forEach((p, k) => {
+        const r0 = (k + 1) * h.gap;
+        let d = '';
+        for (let s = 0; s <= STEPS; s++) {
+          const th = (s / STEPS) * Math.PI * 2;
+          const r = r0 * (1 + 0.11 * Math.sin(3 * th + h.a + t + k * 0.13) + 0.06 * Math.sin(5 * th + h.b - t * 0.7 - k * 0.09) + 0.03 * Math.sin(2 * th + t * 1.3));
+          d += (s ? 'L' : 'M') + (h.x + r * Math.cos(th)).toFixed(1) + ',' + (h.y + r * Math.sin(th)).toFixed(1);
+        }
+        p.setAttribute('d', d + 'Z');
+      });
     });
-    status.dataset.s = 'ok'; status.textContent = 'Passed';
-    total.textContent = 'All 6 checks passed';
   }
-
-  async function run() {
-    if (running) return;
-    if (reduce) { finish(); return; }
-    running = true; btn.disabled = true;
-    log.innerHTML = ''; sha.textContent = randSha();
-    status.dataset.s = 'run'; status.textContent = 'Running'; total.innerHTML = '&nbsp;';
-    stages.forEach(li => { li.className = ''; li.querySelector('.tm').textContent = ''; });
-    const t0 = performance.now();
-    for (const li of stages) {
-      const name = li.querySelector('.nm').textContent, start = performance.now();
-      li.className = 'run';
-      const row = line(`<span class="s">${name}</span>  `, 'cur');
-      // type the log line out
-      const text = li.dataset.log;
-      for (let i = 0; i < text.length; i += 2) { row.lastChild.textContent = '  ' + text.slice(0, i + 2); await wait(14); }
-      await wait(160);
-      row.className = ''; row.insertAdjacentHTML('afterbegin', '<span class="ok">✓</span> ');
-      li.className = 'ok'; li.querySelector('.tm').textContent = ((performance.now() - start) / 1000).toFixed(1) + 's';
-    }
-    status.dataset.s = 'ok'; status.textContent = 'Passed';
-    total.textContent = `All 6 checks passed in ${((performance.now() - t0) / 1000).toFixed(1)}s`;
-    running = false; btn.disabled = false;
-  }
-
-  btn.addEventListener('click', run);
-  // the panel sits in the hero, so run once right after load
-  setTimeout(run, 500);
-})();
-
-// ---------- Planet Hopper placeholder (tiny auto-playing loop) ----------
-(() => {
-  const cv = document.getElementById('hopper'); if (!cv) return;
-  const ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
-  const stars = Array.from({ length: 50 }, () => [Math.random() * W, Math.random() * H * .8, Math.random()]);
-  const plats = [[20, 210, 120], [170, 170, 90], [300, 130, 100]];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function frame(t) {
-    const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0b1230'); g.addColorStop(1, '#22134a');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    stars.forEach(([x, y, b]) => { ctx.globalAlpha = .3 + .6 * Math.abs(Math.sin(t / 900 + b * 9)); ctx.fillStyle = '#fff'; ctx.fillRect(x, y, 2, 2); });
-    ctx.globalAlpha = 1;
-    const pg = ctx.createRadialGradient(360, 50, 5, 370, 60, 60); pg.addColorStop(0, '#9fb4ff'); pg.addColorStop(1, '#3b3f9e');
-    ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(370, 60, 48, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#f0c419'; plats.forEach(([x, y, w]) => ctx.fillRect(x, y, w, 10));
-    // hero hops platform to platform
-    const cyc = reduce ? 0 : (t / 1400) % 3, i = Math.floor(cyc), p = cyc - i;
-    const a = plats[i], b = plats[(i + 1) % 3];
-    const x = a[0] + 40 + (b[0] + 40 - (a[0] + 40)) * p, y = a[1] + (b[1] - a[1]) * p - Math.sin(Math.PI * p) * 60 - 18;
-    ctx.fillStyle = '#5fe08d'; ctx.fillRect(x, y, 18, 18);
-    ctx.fillStyle = '#cfd6ff'; ctx.font = '500 12px "DM Mono", monospace'; ctx.fillText('PLANET HOPPER', 14, 22);
-    if (!reduce) requestAnimationFrame(frame);
+  let ticking = false;
+  function draw() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const prog = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    bar.style.transform = `scaleX(${prog.toFixed(4)})`;
+    if (!reduce) { shape(prog); svg.style.transform = `translateY(${(-prog * 6).toFixed(2)}%)`; }
   }
-  requestAnimationFrame(frame);
+  shape(0);
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } }, { passive: true });
+  addEventListener('resize', draw);
+  draw();
 })();
 </script>
+<script src="t.js" defer></script>
 </body>
 </html>
