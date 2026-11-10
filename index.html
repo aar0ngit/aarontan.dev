@@ -45,15 +45,7 @@
   --t-toolkit: #e6ebe2; --t-education: #e1eae4; --t-beyond: #f1e8d8; --t-contact: #f5e7ae;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #a2b3a8; --line: #27402f;
-    --field: #5bb886; --flag: #f2cf3a; --lane: rgba(232,238,231,.08);
-    --t-top: #0d1a13; --t-work: #0a2217; --t-experience: #17180f; --t-hackathons: #1a190d;
-    --t-toolkit: #0f1d16; --t-education: #0a211a; --t-beyond: #19170f; --t-contact: #221e08;
-    color-scheme: dark;
-  }
-}
+/* light is the default; dark only when the visitor picks it with the theme button */
 :root[data-theme="dark"] {
   --paper: #0d1a13; --panel: #13251b; --ink: #e8eee7; --ink-2: #a2b3a8; --line: #27402f;
   --field: #5bb886; --flag: #f2cf3a; --lane: rgba(232,238,231,.08);
@@ -306,6 +298,10 @@ footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line);
   .results td { padding: 0; border: 0; }
 }
 </style>
+<script>
+// saved theme choice, applied before first paint (light is the default)
+try { const t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <script>
 // intro: once per tab session, on a fresh visit to the top of the page. Add ?intro to the URL to replay it.
 (() => {
@@ -606,10 +602,8 @@ footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line);
 // theme toggle
 (() => {
   const root = document.documentElement;
-  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
   document.getElementById('themeBtn').addEventListener('click', () => {
-    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
     try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
     setTone(currentTone);
   });
