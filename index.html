@@ -238,6 +238,40 @@ h2 { font: 800 clamp(48px, 7vw, 88px)/.88 var(--display); text-transform: upperc
 .mail { font: 600 clamp(22px, 3.4vw, 40px)/1.1 var(--body); text-decoration: none; border-bottom: 3px solid var(--flag); overflow-wrap: anywhere; }
 footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font: 400 13px var(--mono); color: var(--ink-2); }
 
+/* ---------- intro: contour map draws in, scoreboard settles, then the name flies into the hero (head script decides if it plays) ---------- */
+.intro-h1 .hero h1 { opacity: 0; }
+.intro-on .top { translate: 0 -100%; }
+.intro-on .hero .label, .intro-on .hero .intro, .intro-on .hero .ctas, .intro-on .hero .small-links,
+.intro-on .hero .shot, .intro-on .hero .numbers { opacity: 0; }
+.splash { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; cursor: pointer; overflow: hidden; }
+.sp-field { position: absolute; inset: 0; background: #1f5b3d; }
+.sp-field svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sp-field .ring { fill: none; stroke: rgba(243,241,234,.16); stroke-width: 1.2; }
+.sp-field .ring.major { stroke: rgba(243,241,234,.32); stroke-width: 1.8; }
+.sp-field .lbl { font: 500 11px var(--mono); letter-spacing: .08em; fill: rgba(243,241,234,.6); opacity: 0; }
+.sp-field .peak { fill: #f0c419; opacity: 0; }
+.sp-cross { stroke: rgba(240,196,25,.5); stroke-width: 1; opacity: 0; }
+.sp-tag { position: absolute; font: 500 11px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(243,241,234,.65); opacity: 0; }
+.sp-tag.tl { top: 20px; left: max(16px, 4vw); }
+.sp-tag.bl { bottom: 20px; left: max(16px, 4vw); }
+.sp-board { position: absolute; top: 18px; right: max(16px, 4vw); text-align: right; opacity: 0; }
+.sp-board .k { display: block; margin-bottom: 6px; font: 500 11px var(--mono); letter-spacing: .12em; color: rgba(243,241,234,.6); }
+.sp-board .flap { display: inline-flex; gap: 3px; }
+.sp-board .flap span {
+  display: inline-grid; place-items: center; width: 1.2em; height: 1.55em; border-radius: 3px;
+  font: 500 clamp(13px, 1.7vw, 21px)/1 var(--mono); color: #f3f1ea; background: rgba(0,0,0,.3);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.08), inset 0 .77em 0 rgba(255,255,255,.04);
+}
+.sp-board .flap span.set { color: #f0c419; }
+.sp-name {
+  position: relative; transform-origin: 0 0; will-change: transform;
+  font: 900 clamp(104px, 23vw, 340px)/.84 var(--display); text-transform: uppercase; letter-spacing: -.005em;
+}
+.sp-name .ln { display: block; clip-path: inset(-.4em -.3em -.03em -.3em); }
+.sp-name .ch { display: inline-block; transform: translateY(105%); color: transparent; -webkit-text-stroke: 2px #f3f1ea; }
+.sp-name .tan .ch { -webkit-text-stroke-color: #f0c419; }
+@media (max-width: 600px) { .sp-tag.tl { display: none; } .sp-board { right: 16px; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; } body { transition: none; } .shot { transition: none; }
 }
@@ -272,6 +306,26 @@ footer { margin-top: 90px; padding-top: 20px; border-top: 1px solid var(--line);
   .results td { padding: 0; border: 0; }
 }
 </style>
+<script>
+// intro: once per tab session, on a fresh visit to the top of the page. Add ?intro to the URL to replay it.
+(() => {
+  try {
+    const root = document.documentElement, force = /[?&]intro\b/.test(location.search);
+    const nav = performance.getEntriesByType('navigation')[0];
+    const skip = (nav && nav.type !== 'navigate') || location.hash || sessionStorage.getItem('introSeen')
+      || matchMedia('(prefers-reduced-motion: reduce)').matches || /bot|crawl|spider|lighthouse|headless/i.test(navigator.userAgent);
+    if ((skip && !force) || !Element.prototype.animate) return;
+    sessionStorage.setItem('introSeen', '1');
+    history.scrollRestoration = 'manual';   // start at the top; the intro script sets it back to auto
+    root.classList.add('intro-on', 'intro-h1');
+    window.__introFail = setTimeout(() => {   // failsafe: never leave the page hidden
+      root.classList.remove('intro-on', 'intro-h1');
+      history.scrollRestoration = 'auto';
+      const s = document.querySelector('.splash'); if (s) s.remove();
+    }, 7000);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 
@@ -622,6 +676,177 @@ function setTone(t) {
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } }, { passive: true });
   addEventListener('resize', draw);
   draw();
+})();
+
+// intro: contour map draws in, scoreboard settles on the domain, then the name shrinks into the hero heading
+(() => {
+  const root = document.documentElement;
+  if (!root.classList.contains('intro-on')) return;
+  const h1 = document.querySelector('.hero h1'), header = document.querySelector('.top');
+  const items = [...document.querySelectorAll('.hero .label, .hero .intro, .hero .ctas, .hero .small-links, .hero .shot, .hero .numbers')];
+  const W = innerWidth, H = innerHeight, CREAM = '#f3f1ea', FLAG = '#f0c419', DOMAIN = 'AARONTAN.DEV';
+
+  // contour rings: same wobbly-hill shapes as the page background, sized to this screen
+  const hills = [
+    { x: W * .82, y: H * .24, rings: 14, a: 0.4, b: 2.1 },
+    { x: W * .14, y: H * .86, rings: 12, a: 3.3, b: 0.7 },
+  ];
+  const gap = Math.max(W, H) * .034;
+  let svg = '';
+  hills.forEach((h, hi) => {
+    for (let k = 0; k < h.rings; k++) {
+      const r0 = (k + 1) * gap;
+      let d = '';
+      for (let s = 0; s <= 96; s++) {
+        const th = s / 96 * Math.PI * 2;
+        const r = r0 * (1 + .11 * Math.sin(3 * th + h.a + k * .13) + .06 * Math.sin(5 * th + h.b - k * .09) + .03 * Math.sin(2 * th));
+        d += (s ? 'L' : 'M') + (h.x + r * Math.cos(th)).toFixed(1) + ',' + (h.y + r * Math.sin(th)).toFixed(1);
+      }
+      svg += `<path class="ring${k % 5 === 4 ? ' major' : ''}" pathLength="1" data-d="${hi * 140 + k * 55}" d="${d}Z"/>`;
+      if (k % 5 === 4) {
+        const lx = h.x + r0 * 1.02 * Math.cos(-2.5), ly = h.y + r0 * 1.02 * Math.sin(-2.5);
+        svg += `<text class="lbl" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}">${(h.rings - k) * 12} m</text>`;
+      }
+    }
+  });
+  const pk = hills[0];
+  svg += `<line class="sp-cross" x1="0" y1="${pk.y}" x2="${W}" y2="${pk.y}"/><line class="sp-cross" x1="${pk.x}" y1="0" x2="${pk.x}" y2="${H}"/>`;
+  svg += `<circle class="peak" cx="${pk.x}" cy="${pk.y}" r="4"/><text class="lbl" x="${pk.x + 10}" y="${pk.y - 10}">BUKIT TIMAH · 163 m</text>`;
+
+  const word = (w, cls) => `<span class="ln ${cls}">` + [...w].map(c => `<span class="ch">${c}</span>`).join('') + '</span>';
+  const splash = document.createElement('div');
+  splash.className = 'splash';
+  splash.setAttribute('aria-hidden', 'true');
+  splash.innerHTML = '<div class="sp-field">'
+    + `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${svg}</svg>`
+    + '<div class="sp-tag tl">Portfolio / 2026</div>'
+    + '<div class="sp-tag bl">1.3521° N · 103.8198° E</div>'
+    + '<div class="sp-board"><span class="k">Locating</span><span class="flap">' + [...DOMAIN].map(() => '<span>&nbsp;</span>').join('') + '</span></div>'
+    + '</div>'
+    + '<div class="sp-name">' + word('Aaron', '') + word('Tan', 'tan') + '</div>';
+  document.body.appendChild(splash);
+
+  const field = splash.querySelector('.sp-field'), name = splash.querySelector('.sp-name');
+  const chars = [...splash.querySelectorAll('.ch')], flaps = [...splash.querySelectorAll('.flap span')];
+  const ease = 'cubic-bezier(.2,.8,.2,1)', swoop = 'cubic-bezier(.75,0,.2,1)';
+  const timers = [];
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  let started = false, flying = false, revealed = false, ended = false, flapTimer = 0;
+
+  // box around the letters only (ignores block widths), so both names line up exactly
+  function textBox(el) {
+    let l = Infinity, t = Infinity, r = -Infinity;
+    const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let n; (n = walk.nextNode());) {
+      const txt = n.nodeValue, a = txt.search(/\S/);
+      if (a < 0) continue;
+      const range = document.createRange();
+      range.setStart(n, a); range.setEnd(n, txt.trimEnd().length);
+      const b = range.getBoundingClientRect();
+      l = Math.min(l, b.left); t = Math.min(t, b.top); r = Math.max(r, b.right);
+    }
+    return { left: l, top: t, width: r - l };
+  }
+
+  // split-flap board: each slot scrambles, then settles left to right on the domain
+  function runBoard(t0) {
+    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.';
+    flapTimer = setInterval(() => {
+      const t = performance.now() - t0;
+      let busy = false;
+      flaps.forEach((f, i) => {
+        if (f.classList.contains('set')) return;
+        busy = true;
+        if (t > 500 + i * 70) { f.textContent = DOMAIN[i]; f.classList.add('set'); }
+        else if (t > i * 25) f.textContent = pool[Math.random() * pool.length | 0];
+      });
+      if (!busy) clearInterval(flapTimer);
+    }, 55);
+  }
+
+  function reveal() {
+    if (revealed) return; revealed = true;
+    items.forEach((el, i) => el.animate([{ opacity: 0, translate: '0 22px' }, { opacity: 1, translate: '0 0' }],
+      { duration: 650, delay: i * 70, easing: ease, fill: 'backwards' }));
+    header.animate([{ translate: '0 -100%' }, { translate: '0 0' }], { duration: 600, delay: 150, easing: ease, fill: 'backwards' });
+    root.classList.remove('intro-on');
+  }
+
+  function end() {
+    if (ended) return; ended = true;
+    timers.forEach(clearTimeout); clearInterval(flapTimer); clearTimeout(window.__introFail);
+    guards.forEach(([ev, fn, opts]) => removeEventListener(ev, fn, opts));
+    history.scrollRestoration = 'auto';
+    root.classList.remove('intro-on', 'intro-h1');
+    splash.remove();
+  }
+
+  // a scroll, click or key fast-forwards: everything snaps to its finished state, then a quick fly-in
+  function skip() {
+    if (ended || flying) return;
+    if (!started) return end();
+    timers.forEach(clearTimeout); timers.length = 0;
+    clearInterval(flapTimer);
+    flaps.forEach((f, i) => { f.textContent = DOMAIN[i]; f.classList.add('set'); });
+    splash.getAnimations({ subtree: true }).forEach(a => a.finish());
+    fly(.5);
+  }
+
+  function fly(f = 1) {
+    flying = true;
+    if (scrollY) scrollTo({ top: 0, behavior: 'instant' });
+    const from = textBox(name), to = textBox(h1), o = name.getBoundingClientRect();
+    const s = to.width / from.width;
+    const tx = to.left - o.left - s * (from.left - o.left), ty = to.top - o.top - s * (from.top - o.top);
+    const ink = getComputedStyle(h1).color, green = getComputedStyle(h1.querySelector('span')).color;
+    name.animate([{ transform: 'none' }, { transform: `translate(${tx}px, ${ty}px) scale(${s})` }], { duration: 950 * f, easing: swoop, fill: 'forwards' });
+    chars.forEach((c, i) => c.animate([{ color: i < 5 ? CREAM : FLAG }, { color: i < 5 ? ink : green }], { duration: 950 * f, easing: swoop, fill: 'forwards' }));
+    field.animate([{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 100% 0)' }], { duration: 800 * f, delay: 60 * f, easing: swoop, fill: 'forwards' });
+    later(550 * f, reveal);
+    later(950 * f, end);
+  }
+
+  function play() {
+    if (ended) return;
+    started = true;
+    splash.querySelectorAll('.ring').forEach(p => p.animate([{ strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDasharray: 1, strokeDashoffset: 0 }],
+      { duration: 1000, delay: +p.dataset.d, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' }));
+    splash.querySelectorAll('.lbl, .peak, .sp-cross').forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 700 + i * 40, fill: 'forwards' }));
+    splash.querySelectorAll('.sp-tag, .sp-board').forEach((el, i) => el.animate([{ opacity: 0, translate: '0 6px' }, { opacity: 1, translate: '0 0' }], { duration: 400, delay: 120 + i * 90, easing: ease, fill: 'forwards' }));
+    chars.forEach((c, i) => {
+      c.animate([{ transform: 'translateY(105%)' }, { transform: 'none' }], { duration: 700, delay: 150 + i * 60, easing: ease, fill: 'both' });
+      c.animate([{ color: 'rgba(243,241,234,0)', webkitTextStrokeColor: i < 5 ? CREAM : FLAG },
+                 { color: i < 5 ? CREAM : FLAG, webkitTextStrokeColor: 'rgba(243,241,234,0)' }],
+        { duration: 320, delay: 950 + i * 90, easing: 'ease-out', fill: 'both' });
+    });
+    runBoard(performance.now() + 300);
+    later(2000, fly);
+  }
+
+  // the page can't scroll mid-intro (the name must land on a heading that stays put).
+  // A deliberate scroll, click, Esc/Enter or scroll key fast-forwards to the page. Input in the first
+  // 400 ms is ignored (trackpad momentum or a held key from the previous page), and scroll events the
+  // browser fires by itself (scroll restore, font loading) only snap the page back to the top.
+  const t0 = performance.now(), scrollKeys = /^( |ArrowUp|ArrowDown|PageUp|PageDown|Home|End)$/;
+  const fastForward = () => { if (performance.now() - t0 > 400) skip(); };
+  const blockScroll = e => { if (e.cancelable) e.preventDefault(); fastForward(); };
+  const guards = [
+    ['wheel', blockScroll, { passive: false }],
+    ['touchmove', blockScroll, { passive: false }],
+    ['keydown', e => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;   // leave shortcuts like Ctrl+R alone
+      const scrolly = scrollKeys.test(e.key);
+      if (scrolly) e.preventDefault();
+      if (scrolly || e.key === 'Escape' || e.key === 'Enter') fastForward();
+    }, false],
+    ['pointerdown', fastForward, { passive: true }],
+    ['scroll', () => { if (scrollY) scrollTo({ top: 0, behavior: 'instant' }); }, { passive: true }],
+  ];
+  guards.forEach(([ev, fn, opts]) => addEventListener(ev, fn, opts));
+
+  // wait for the display font (max 1.5 s) so the letters measure and render correctly
+  const font = document.fonts ? document.fonts.load('900 100px "Big Shoulders Display"') : Promise.resolve();
+  Promise.race([font, new Promise(r => setTimeout(r, 1500))]).then(play, play);
 })();
 </script>
 <script src="t.js" defer></script>
